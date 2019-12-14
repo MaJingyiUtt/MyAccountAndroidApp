@@ -41,7 +41,7 @@ public class AddFragment extends Fragment {
         final EditText amountEd=root.findViewById(R.id.ajoute_amount_ed);
 
 
-        final Spinner mySpinner = (Spinner) root.findViewById(R.id.ajoute_category_spinner);
+        final Spinner categorySpinner = (Spinner) root.findViewById(R.id.ajoute_category_spinner);
         Button validerBt = root.findViewById(R.id.ajoute_button_valider);
 
 
@@ -51,6 +51,7 @@ public class AddFragment extends Fragment {
                 expenseButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
                 incomeButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 expense=false;
+                categorySpinner.setVisibility(View.INVISIBLE);
             }
         });
         expenseButton.setOnClickListener(new View.OnClickListener(){
@@ -59,6 +60,7 @@ public class AddFragment extends Fragment {
                 incomeButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
                 expenseButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 expense=true;
+                categorySpinner.setVisibility(View.VISIBLE);
             }
         });
 
@@ -69,7 +71,7 @@ public class AddFragment extends Fragment {
                 int   month= datePicker.getMonth() + 1;
                 int   year = datePicker.getYear();
                 String title = titleEd.getText().toString();
-                String category = mySpinner.getSelectedItem().toString();
+                String category = categorySpinner.getSelectedItem().toString();
                 if(title.length()!=0 && amountEd.getText().toString().length()!=0){
                     Double amount=Double.parseDouble(amountEd.getText().toString());
                     LineEntity lineEntity = new LineEntity(title, day,month,year,amount,category,expense);
@@ -81,7 +83,6 @@ public class AddFragment extends Fragment {
                 }
             }
         });
-
         return root;
     }
 }

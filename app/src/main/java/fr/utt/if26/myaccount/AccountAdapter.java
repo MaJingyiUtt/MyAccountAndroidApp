@@ -17,14 +17,12 @@ class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHolder> {
         public TextView title;
         public TextView date;
         public TextView category;
-        public TextView expense;
         public TextView amount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title= itemView.findViewById(R.id.row_title);
             date= itemView.findViewById(R.id.row_date);
             category= itemView.findViewById(R.id.row_category);
-            expense= itemView.findViewById(R.id.row_expense);
             amount= itemView.findViewById(R.id.row_amount);
 
         }
@@ -53,9 +51,9 @@ class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHolder> {
            holder.date.setText(account.get(position).getDay()+"/"+account.get(position).getMonth()+"/"+account.get(position).getYear());
            holder.category.setText(account.get(position).getCategory());
            if(account.get(position).isExpense()){
-               holder.expense.setText("expense");
+               holder.amount.setText("- "+account.get(position).getAmount());
            }else{
-               holder.expense.setText("income");
+               holder.amount.setText("+ "+account.get(position).getAmount());
            }
        }else{
            holder.title.setText("none");
