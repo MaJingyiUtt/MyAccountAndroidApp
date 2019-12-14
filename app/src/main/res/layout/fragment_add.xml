@@ -14,11 +14,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/ajoute_button_income"
@@ -48,7 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:datePickerMode="spinner"
-                android:calendarViewShown="false"/>
+                android:calendarViewShown="false"
+                android:imeOptions="actionDone"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,6 +68,8 @@
                 android:id="@+id/ajoute_title_ed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:hint="@string/title" />
 
             <TextView
@@ -79,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/amount"
+                android:imeOptions="actionDone"
                 android:inputType="numberDecimal|numberSigned"
                 />
 
@@ -92,9 +100,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <Spinner
                 android:id="@+id/ajoute_category_spinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/category_arrays"/>
+                android:entries="@array/category_arrays"
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/ajoute_button_valider"
