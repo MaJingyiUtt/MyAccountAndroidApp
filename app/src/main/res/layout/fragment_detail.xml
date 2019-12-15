@@ -24,6 +24,7 @@
         android:orientation="horizontal">
 
         <Spinner
+            android:id="@+id/detail_month_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,6 +32,7 @@
             android:layout_gravity="bottom"/>
 
         <Spinner
+            android:id="@+id/detail_year_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

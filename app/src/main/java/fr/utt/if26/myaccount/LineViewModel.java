@@ -23,4 +23,5 @@ public class LineViewModel extends AndroidViewModel {
     public void delete(String id) {
         mRepository.delete(id);
     }
+
 }
