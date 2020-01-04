@@ -21,18 +21,34 @@ public class LineRespository {
         return mAllLines;
     }
 
+    public LiveData<List<LineEntity>> getAllLinesByMonth(int year, int month) {
+        return mLineDao.getAllLinesByMonth(year, month);
+    }
+
     void insert(LineEntity lineEntity) {
         new insertAsyncTask(mLineDao).execute(lineEntity);
     }
-    public void delete (String id){
+
+    public void delete(String id) {
         new deletAsyncTask(mLineDao).execute(id);
     }
+
+    public int getExpenseByMonth(int year, int month) {
+       // new getExpenseByMonthAsyncTask(mLineDao).execute(year, month);
+        return 0;
+    }
+
+    public int getIncomeByMonth(int year, int month) {
+        return mLineDao.getIncomeByMonth(year, month);
+    }
+
     private static class insertAsyncTask extends AsyncTask<LineEntity, Void, Void> {
         private LineDao mAsyncTaskDao;
 
         insertAsyncTask(LineDao dao) {
             mAsyncTaskDao = dao;
         }
+
         @Override
         protected Void doInBackground(final LineEntity... params) {
             mAsyncTaskDao.insert(params[0]);
@@ -40,7 +56,7 @@ public class LineRespository {
         }
     }
 
-    private  static class deletAsyncTask extends AsyncTask<String, Void, Void> {
+    private static class deletAsyncTask extends AsyncTask<String, Void, Void> {
 
         private LineDao mAsyncTaskDao;
 
@@ -54,4 +70,24 @@ public class LineRespository {
             return null;
         }
     }
+
+    private static class getExpenseByMonthAsyncTask extends AsyncTask<Void, Void, Void>{
+
+        private LineDao mAsyncTaskDao;
+
+        getExpenseByMonthAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+        }
+
+
+    }
+
 }

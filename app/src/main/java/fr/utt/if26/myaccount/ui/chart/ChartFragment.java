@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import fr.utt.if26.myaccount.R;
 
 public class ChartFragment extends Fragment {
@@ -30,6 +34,17 @@ public class ChartFragment extends Fragment {
                 textView.setText(s);
             }
         });
+////https://github.com/jjoe64/GraphView
+        GraphView graph = (GraphView) root.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graph.addSeries(series);
+
         return root;
     }
 }

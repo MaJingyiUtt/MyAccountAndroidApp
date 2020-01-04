@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +31,8 @@ public class DetailFragment extends Fragment {
     private LineViewModel mLineViewModel;
     private Spinner monthSpin;
     private Spinner yearSpin;
+    private TextView expense;
+    private TextView income;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,16 +47,54 @@ public class DetailFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
-
-        mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
-        mLineViewModel.getmAllLines().observe(this, new Observer<List<LineEntity>>() {
+        expense=root.findViewById(R.id.detail_expense_tv);
+        income=root.findViewById(R.id.detail_income_tv);
+        //expense.setText(mLineViewModel.getExpenseByMonth(getCurrentMonthPos(),getCurrentYearPos()));
+        //income.setText(mLineViewModel.getIncomeByMonth(getCurrentMonthPos(),getCurrentYearPos()));
+//        mLineViewModel.getmAllLines().observe(this, new Observer<List<LineEntity>>() {
+//            @Override
+//            public void onChanged(@Nullable final List<LineEntity> lineEntities) {
+//                adapter.setAccount(lineEntities);
+//            }
+//        });
+        mLineViewModel.getmLinesbyMonth(getCurrentYearPos(),getCurrentMonthPos()).observe(this, new Observer<List<LineEntity>>() {
             @Override
             public void onChanged(@Nullable final List<LineEntity> lineEntities) {
                 adapter.setAccount(lineEntities);
             }
         });
-
-
+        yearSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                int selectedYear=Integer.valueOf(yearSpin.getSelectedItem().toString());
+                int selectedMonth=Integer.valueOf(monthSpin.getSelectedItem().toString());
+             //   expense.setText(mLineViewModel.getExpenseByMonth(getCurrentMonthPos(),getCurrentYearPos()));
+               // income.setText(mLineViewModel.getIncomeByMonth(getCurrentMonthPos(),getCurrentYearPos()));
+                mLineViewModel.getmLinesbyMonth(selectedYear,selectedMonth).observe(getViewLifecycleOwner(), new Observer<List<LineEntity>>() {
+                    @Override
+                    public void onChanged(@Nullable final List<LineEntity> lineEntities) {
+                        adapter.setAccount(lineEntities);
+                    }
+                });
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {}
+        });
+        monthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                int selectedYear=Integer.valueOf(yearSpin.getSelectedItem().toString());
+                int selectedMonth=Integer.valueOf(monthSpin.getSelectedItem().toString());
+                mLineViewModel.getmLinesbyMonth(selectedYear,selectedMonth).observe(getViewLifecycleOwner(), new Observer<List<LineEntity>>() {
+                    @Override
+                    public void onChanged(@Nullable final List<LineEntity> lineEntities) {
+                        adapter.setAccount(lineEntities);
+                    }
+                });
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) { }
+        });
 
 
         return root;
