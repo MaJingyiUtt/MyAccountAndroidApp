@@ -17,22 +17,28 @@ public class LineViewModel extends AndroidViewModel {
         mRepository = new LineRespository(application);
         mAllLines = mRepository.getAllLines();
     }
-    LiveData<List<LineEntity>> getmAllLines() { return mAllLines; }
-    LiveData<List<LineEntity>> getmLinesbyMonth(int year, int month) {
-        return mRepository.getAllLinesByMonth(year,month);
+
+    LiveData<List<LineEntity>> getmAllLines() {
+        return mAllLines;
     }
 
-    public void insert(LineEntity lineEntity) { mRepository.insert(lineEntity); }
+    LiveData<List<LineEntity>> getmLinesbyMonth(int year, int month) {
+        return mRepository.getAllLinesByMonth(year, month);
+    }
+
+    public void insert(LineEntity lineEntity) {
+        mRepository.insert(lineEntity);
+    }
 
     public void delete(String id) {
         mRepository.delete(id);
     }
 
-    public int getExpenseByMonth(int year, int month) {
-        return mRepository.getExpenseByMonth(year,month);
+    public String getExpenseByMonth(int year, int month) {
+        return mRepository.getExpenseByMonth(year, month);
     }
 
-    public int getIncomeByMonth(int year, int month) {
-        return mRepository.getIncomeByMonth(year,month);
+    public String getIncomeByMonth(int year, int month) {
+        return mRepository.getIncomeByMonth(year, month);
     }
 }

@@ -2,10 +2,12 @@ package fr.utt.if26.myaccount;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class LineRespository {
     private LineDao mLineDao;
@@ -33,13 +35,31 @@ public class LineRespository {
         new deletAsyncTask(mLineDao).execute(id);
     }
 
-    public int getExpenseByMonth(int year, int month) {
-       // new getExpenseByMonthAsyncTask(mLineDao).execute(year, month);
-        return 0;
+    public String getExpenseByMonth(int year, int month) {
+        //Log.v("mjy","getExpenseByMonth() "+year+" "+month);
+        AsyncTask task = new getExpenseByMonthAsyncTask(mLineDao).execute(year, month);
+        String result = null;
+        try {
+            result = task.get().toString();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
-    public int getIncomeByMonth(int year, int month) {
-        return mLineDao.getIncomeByMonth(year, month);
+    public String getIncomeByMonth(int year, int month) {
+        AsyncTask task = new getIncomeByMonthAsyncTask(mLineDao).execute(year, month);
+        String result = null;
+        try {
+            result = task.get().toString();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private static class insertAsyncTask extends AsyncTask<LineEntity, Void, Void> {
@@ -71,23 +91,32 @@ public class LineRespository {
         }
     }
 
-    private static class getExpenseByMonthAsyncTask extends AsyncTask<Void, Void, Void>{
+    private static class getExpenseByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private LineDao mAsyncTaskDao;
 
         getExpenseByMonthAsyncTask(LineDao dao) {
             mAsyncTaskDao = dao;
         }
+
         @Override
-        protected Void doInBackground(Void... params) {
-            return null;
+        protected Integer doInBackground(final Integer... params) {
+            return mAsyncTaskDao.getExpenseByMonth(params[0], params[1]);
         }
+    }
+
+    private static class getIncomeByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private LineDao mAsyncTaskDao;
+
+        getIncomeByMonthAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
         @Override
-        protected void onPostExecute(Void result) {
-
+        protected Integer doInBackground(final Integer... params) {
+            return mAsyncTaskDao.getIncomeByMonth(params[0], params[1]);
         }
-
-
     }
 
 }

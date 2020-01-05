@@ -4,15 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity (tableName = "account_table")
-public class LineEntity{
+@Entity(tableName = "account_table")
+public class LineEntity {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String title;
-    private int   day;
-    private int   month;
-    private int   year;
+    private int day;
+    private int month;
+    private int year;
     private Double amount;
     private String category;
     private boolean expense;

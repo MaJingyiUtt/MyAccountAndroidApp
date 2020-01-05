@@ -38,26 +38,27 @@ public class DetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
-        recyclerView=root.findViewById(R.id.main_recyclerview);
-        monthSpin=root.findViewById(R.id.detail_month_spinner);
-        yearSpin=root.findViewById(R.id.detail_year_spinner);
+        recyclerView = root.findViewById(R.id.main_recyclerview);
+        monthSpin = root.findViewById(R.id.detail_month_spinner);
+        yearSpin = root.findViewById(R.id.detail_year_spinner);
         monthSpin.setSelection(getCurrentMonthPos());
         yearSpin.setSelection(getCurrentYearPos());
         final AccountAdapter adapter = new AccountAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
         mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
-        expense=root.findViewById(R.id.detail_expense_tv);
-        income=root.findViewById(R.id.detail_income_tv);
-        //expense.setText(mLineViewModel.getExpenseByMonth(getCurrentMonthPos(),getCurrentYearPos()));
-        //income.setText(mLineViewModel.getIncomeByMonth(getCurrentMonthPos(),getCurrentYearPos()));
+        expense = root.findViewById(R.id.detail_expense_tv);
+        income = root.findViewById(R.id.detail_income_tv);
+        //expense.setText(String.valueOf(mLineViewModel.getExpenseByMonth(getCurrentMonthPos(),getCurrentYearPos())));
+        // income.setText(mLineViewModel.getIncomeByMonth(getCurrentMonthPos(),getCurrentYearPos()));
+
 //        mLineViewModel.getmAllLines().observe(this, new Observer<List<LineEntity>>() {
 //            @Override
 //            public void onChanged(@Nullable final List<LineEntity> lineEntities) {
 //                adapter.setAccount(lineEntities);
 //            }
 //        });
-        mLineViewModel.getmLinesbyMonth(getCurrentYearPos(),getCurrentMonthPos()).observe(this, new Observer<List<LineEntity>>() {
+        mLineViewModel.getmLinesbyMonth(getCurrentYearPos(), getCurrentMonthPos()).observe(this, new Observer<List<LineEntity>>() {
             @Override
             public void onChanged(@Nullable final List<LineEntity> lineEntities) {
                 adapter.setAccount(lineEntities);
@@ -66,34 +67,40 @@ public class DetailFragment extends Fragment {
         yearSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                int selectedYear=Integer.valueOf(yearSpin.getSelectedItem().toString());
-                int selectedMonth=Integer.valueOf(monthSpin.getSelectedItem().toString());
-             //   expense.setText(mLineViewModel.getExpenseByMonth(getCurrentMonthPos(),getCurrentYearPos()));
-               // income.setText(mLineViewModel.getIncomeByMonth(getCurrentMonthPos(),getCurrentYearPos()));
-                mLineViewModel.getmLinesbyMonth(selectedYear,selectedMonth).observe(getViewLifecycleOwner(), new Observer<List<LineEntity>>() {
+                int selectedYear = Integer.valueOf(yearSpin.getSelectedItem().toString());
+                int selectedMonth = Integer.valueOf(monthSpin.getSelectedItem().toString());
+                expense.setText(mLineViewModel.getExpenseByMonth(selectedYear, selectedMonth));
+                income.setText(mLineViewModel.getIncomeByMonth(selectedYear, selectedMonth));
+                mLineViewModel.getmLinesbyMonth(selectedYear, selectedMonth).observe(getViewLifecycleOwner(), new Observer<List<LineEntity>>() {
                     @Override
                     public void onChanged(@Nullable final List<LineEntity> lineEntities) {
                         adapter.setAccount(lineEntities);
                     }
                 });
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {}
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
         monthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                int selectedYear=Integer.valueOf(yearSpin.getSelectedItem().toString());
-                int selectedMonth=Integer.valueOf(monthSpin.getSelectedItem().toString());
-                mLineViewModel.getmLinesbyMonth(selectedYear,selectedMonth).observe(getViewLifecycleOwner(), new Observer<List<LineEntity>>() {
+                int selectedYear = Integer.valueOf(yearSpin.getSelectedItem().toString());
+                int selectedMonth = Integer.valueOf(monthSpin.getSelectedItem().toString());
+                expense.setText(mLineViewModel.getExpenseByMonth(selectedYear, selectedMonth));
+                income.setText(mLineViewModel.getIncomeByMonth(selectedYear, selectedMonth));
+                mLineViewModel.getmLinesbyMonth(selectedYear, selectedMonth).observe(getViewLifecycleOwner(), new Observer<List<LineEntity>>() {
                     @Override
                     public void onChanged(@Nullable final List<LineEntity> lineEntities) {
                         adapter.setAccount(lineEntities);
                     }
                 });
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) { }
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
 
@@ -105,9 +112,10 @@ public class DetailFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         return month;
     }
+
     private int getCurrentYearPos() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        return year-2017;
+        return year - 2017;
     }
 }

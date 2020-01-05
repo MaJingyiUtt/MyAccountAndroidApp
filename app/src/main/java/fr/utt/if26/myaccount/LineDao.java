@@ -27,6 +27,7 @@ public interface LineDao {
 
     @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and expense=1")
     int getExpenseByMonth(int year, int month);
+
     @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and expense=0")
     int getIncomeByMonth(int year, int month);
 
