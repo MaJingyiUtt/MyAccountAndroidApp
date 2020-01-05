@@ -86,6 +86,7 @@ public class ChartFragment extends Fragment {
         int[] colorClassArray = new int[]{getResources().getColor(R.color.colorTransport),getResources().getColor(R.color.colorShopping),getResources().getColor(R.color.colorFood),getResources().getColor(R.color.colorHousing)};
         pieDataSet.setColors(colorClassArray);
         PieData pieData = new PieData(pieDataSet);
+        pieData.setValueTextSize(15);
         pieChart.setData(pieData);
         pieChart.setDrawEntryLabels(true);
         pieChart.setHoleRadius(0);
