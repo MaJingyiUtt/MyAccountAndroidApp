@@ -41,4 +41,20 @@ public class LineViewModel extends AndroidViewModel {
     public String getIncomeByMonth(int year, int month) {
         return mRepository.getIncomeByMonth(year, month);
     }
+
+    public String getTransportByMonth(int year, int month) {
+        return mRepository.getTransportByMonth(year, month);
+    }
+
+    public String getShoppingByMonth(int year, int month) {
+        return mRepository.getShoppingByMonth(year, month);
+    }
+
+    public String getFoodByMonth(int year, int month) {
+        return mRepository.getFoodByMonth(year, month);
+    }
+
+    public String getHousingByMonth(int year, int month) {
+        return mRepository.getHousingByMonth(year, month);
+    }
 }

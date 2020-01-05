@@ -62,6 +62,58 @@ public class LineRespository {
         return result;
     }
 
+    public String getTransportByMonth(int year, int month) {
+        AsyncTask task = new getTransportByMonthAsyncTask(mLineDao).execute(year, month);
+        String result = null;
+        try {
+            result = task.get().toString();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public String getShoppingByMonth(int year, int month) {
+        AsyncTask task = new getShoppingByMonthAsyncTask(mLineDao).execute(year, month);
+        String result = null;
+        try {
+            result = task.get().toString();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public String getFoodByMonth(int year, int month) {
+        AsyncTask task = new getFoodByMonthAsyncTask(mLineDao).execute(year, month);
+        String result = null;
+        try {
+            result = task.get().toString();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public String getHousingByMonth(int year, int month) {
+        AsyncTask task = new getHousingByMonthAsyncTask(mLineDao).execute(year, month);
+        String result = null;
+        try {
+            result = task.get().toString();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     private static class insertAsyncTask extends AsyncTask<LineEntity, Void, Void> {
         private LineDao mAsyncTaskDao;
 
@@ -116,6 +168,62 @@ public class LineRespository {
         @Override
         protected Integer doInBackground(final Integer... params) {
             return mAsyncTaskDao.getIncomeByMonth(params[0], params[1]);
+        }
+    }
+
+    private static class getTransportByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private LineDao mAsyncTaskDao;
+
+        getTransportByMonthAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Integer doInBackground(final Integer... params) {
+            return mAsyncTaskDao.getTransportByMonth(params[0], params[1]);
+        }
+    }
+
+    private static class getShoppingByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private LineDao mAsyncTaskDao;
+
+        getShoppingByMonthAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Integer doInBackground(final Integer... params) {
+            return mAsyncTaskDao.getShoppingByMonth(params[0], params[1]);
+        }
+    }
+
+    private static class getFoodByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private LineDao mAsyncTaskDao;
+
+        getFoodByMonthAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Integer doInBackground(final Integer... params) {
+            return mAsyncTaskDao.getFoodByMonth(params[0], params[1]);
+        }
+    }
+
+    private static class getHousingByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private LineDao mAsyncTaskDao;
+
+        getHousingByMonthAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Integer doInBackground(final Integer... params) {
+            return mAsyncTaskDao.getHousingByMonth(params[0], params[1]);
         }
     }
 

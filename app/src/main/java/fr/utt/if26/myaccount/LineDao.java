@@ -31,4 +31,16 @@ public interface LineDao {
     @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and expense=0")
     int getIncomeByMonth(int year, int month);
 
+    @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and category='Transport'")
+    int getTransportByMonth(int year, int month);
+
+    @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and category='Shopping'")
+    int getShoppingByMonth(int year, int month);
+
+    @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and category='Food'")
+    int getFoodByMonth(int year, int month);
+
+    @Query("SELECT SUM(amount) FROM account_table WHERE month=:month and year=:year and category='Housing'")
+    int getHousingByMonth(int year, int month);
+
 }

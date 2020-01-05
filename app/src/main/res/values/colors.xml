@@ -6,4 +6,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorExpense">#FF0000</color>
     <color name="colorIncome">#00FF00</color>
+    <color name="colorTransport">#FEAE65</color>
+    <color name="colorShopping">#F66D44</color>
+    <color name="colorFood">#65C2A6</color>
+    <color name="colorHousing">#2D87BB</color>
 </resources>
