@@ -79,6 +79,8 @@ public class DetailFragment extends Fragment {
                 });
             }
 
+
+
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
             }
@@ -102,7 +104,6 @@ public class DetailFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parentView) {
             }
         });
-
 
         return root;
     }
