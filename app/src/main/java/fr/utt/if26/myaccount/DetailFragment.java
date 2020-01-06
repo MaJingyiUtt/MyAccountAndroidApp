@@ -38,8 +38,8 @@ public class DetailFragment extends Fragment {
         yearSpin = root.findViewById(R.id.detail_year_spinner);
         monthSpin.setSelection(getCurrentMonthPos());
         yearSpin.setSelection(getCurrentYearPos());
-        final AccountAdapter adapter = new AccountAdapter(getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        final AccountAdapter adapter = new AccountAdapter(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
         expense = root.findViewById(R.id.detail_expense_tv);
