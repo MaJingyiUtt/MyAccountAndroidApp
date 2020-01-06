@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_chart"
-        android:name="fr.utt.if26.myaccount.ui.chart.ChartFragment"
+        android:name="fr.utt.if26.myaccount.ChartFragment"
         android:label="@string/charts"
         tools:layout="@layout/fragment_chart" />
 </navigation>

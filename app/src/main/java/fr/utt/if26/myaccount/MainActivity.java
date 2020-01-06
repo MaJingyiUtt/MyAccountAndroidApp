@@ -2,17 +2,15 @@ package fr.utt.if26.myaccount;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
@@ -32,14 +30,14 @@ public class MainActivity extends AppCompatActivity {
         //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration); //no action bar set in styles.xml
         NavigationUI.setupWithNavController(navView, navController);
 
-//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.add(Calendar.SECOND,5);
-//
-//        Intent intent = new Intent("mjy.action.DISPLAY_NOTIFICATION");
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-//
-//        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND,5);
+
+        Intent intent = new Intent("mjy.action.DISPLAY_NOTIFICATION");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
     }
 
 }

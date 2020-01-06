@@ -1,4 +1,4 @@
-package fr.utt.if26.myaccount.ui.chart;
+package fr.utt.if26.myaccount;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,14 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -23,11 +19,6 @@ import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
-import fr.utt.if26.myaccount.LineEntity;
-import fr.utt.if26.myaccount.LineViewModel;
-import fr.utt.if26.myaccount.R;
 
 public class ChartFragment extends Fragment {
 
@@ -98,10 +89,19 @@ public class ChartFragment extends Fragment {
 
     private ArrayList<PieEntry> dataValues(int year, int month) {
         ArrayList<PieEntry> dataVals = new ArrayList<>();
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getTransportByMonth(year, month)), "Transport"));
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getShoppingByMonth(year, month)), "Shopping"));
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getFoodByMonth(year, month)), "Food"));
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getHousingByMonth(year, month)), "Housing"));
+        if(mLineViewModel.getTransportByMonth(year, month)!="0"){
+            dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getTransportByMonth(year, month)), "Transport"));
+        }
+        if(mLineViewModel.getShoppingByMonth(year, month)!="0"){
+            dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getShoppingByMonth(year, month)), "Shopping"));
+        }
+        if(mLineViewModel.getFoodByMonth(year, month)!="0"){
+            dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getFoodByMonth(year, month)), "Food"));
+        }
+        if(mLineViewModel.getHousingByMonth(year, month)!="0"){
+            dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getHousingByMonth(year, month)), "Housing"));
+        }
+
         return dataVals;
     }
 

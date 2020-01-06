@@ -2,7 +2,6 @@ package fr.utt.if26.myaccount;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 

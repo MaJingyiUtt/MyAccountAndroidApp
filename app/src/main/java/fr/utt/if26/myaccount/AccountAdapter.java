@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -111,7 +109,7 @@ class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHolder> {
                     holder.category.setImageResource(R.drawable.shopping);
                     break;
                 default:
-                    holder.category.setImageResource(R.drawable.icon);
+                    holder.category.setImageResource(R.drawable.income_icon);
             }
 
             if (account.get(position).isExpense()) {
