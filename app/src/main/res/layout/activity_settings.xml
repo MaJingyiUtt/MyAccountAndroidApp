@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="20dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="20dp"
+        android:text="@string/settings"
+        android:textColor="#000000"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#AFA9A9"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="@string/data"
+        android:textColor="#000000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/signup"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="#000000"/>
+    <TextView
+        android:id="@+id/settings_export_tv"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/export"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="#000000"/>
+    <TextView
+        android:id="@+id/settings_delete_tv"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/delete"
+        android:textColor="@color/colorExpense"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#AFA9A9"
+        android:text="@string/security"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#000000"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/pin"
+        android:paddingHorizontal="20dp"/>
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/faceid"
+        android:paddingHorizontal="20dp"/>
+
+</LinearLayout>

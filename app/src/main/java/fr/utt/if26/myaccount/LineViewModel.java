@@ -34,6 +34,10 @@ public class LineViewModel extends AndroidViewModel {
         mRepository.delete(id);
     }
 
+    public void deleteAll() {
+        mRepository.deleteAll();
+    }
+
     public String getExpenseByMonth(int year, int month) {
         return mRepository.getExpenseByMonth(year, month);
     }

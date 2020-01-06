@@ -35,6 +35,10 @@ public class LineRespository {
         new deletAsyncTask(mLineDao).execute(id);
     }
 
+    public void deleteAll() {
+        new deleteAllAsyncTask(mLineDao).execute();
+    }
+
     public String getExpenseByMonth(int year, int month) {
         //Log.v("mjy","getExpenseByMonth() "+year+" "+month);
         AsyncTask task = new getExpenseByMonthAsyncTask(mLineDao).execute(year, month);
@@ -128,6 +132,21 @@ public class LineRespository {
         }
     }
 
+    private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
+        private LineDao mAsyncTaskDao;
+
+        deleteAllAsyncTask(LineDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mAsyncTaskDao.deleteAll();
+            return null;
+        }
+    }
+
     private static class deletAsyncTask extends AsyncTask<String, Void, Void> {
 
         private LineDao mAsyncTaskDao;
@@ -142,6 +161,7 @@ public class LineRespository {
             return null;
         }
     }
+
 
     private static class getExpenseByMonthAsyncTask extends AsyncTask<Integer, Void, Integer> {
 

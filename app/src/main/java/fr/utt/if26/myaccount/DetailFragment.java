@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ public class DetailFragment extends Fragment {
     private Spinner yearSpin;
     private TextView expense;
     private TextView income;
-
+    private ImageButton ib;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +50,16 @@ public class DetailFragment extends Fragment {
         mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
         expense = root.findViewById(R.id.detail_expense_tv);
         income = root.findViewById(R.id.detail_income_tv);
+
+        ib = (ImageButton) root.findViewById(R.id.detail_bt);
+        ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainIntent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(mainIntent);
+
+            }
+        });
         //expense.setText(String.valueOf(mLineViewModel.getExpenseByMonth(getCurrentMonthPos(),getCurrentYearPos())));
         // income.setText(mLineViewModel.getIncomeByMonth(getCurrentMonthPos(),getCurrentYearPos()));
 
