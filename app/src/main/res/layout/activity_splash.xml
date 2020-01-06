@@ -17,6 +17,14 @@
         tools:layout_editor_absoluteY="269dp"
         android:textSize="40dp"
         android:layout_gravity="center" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/icon"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        />
 
     <TextView
         android:layout_marginTop="200dp"
@@ -27,5 +35,7 @@
         tools:layout_editor_absoluteY="269dp"
         android:textSize="20dp"
         android:layout_gravity="center" />
+
+
 
 </LinearLayout>
