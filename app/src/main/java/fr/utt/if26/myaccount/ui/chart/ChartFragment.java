@@ -47,7 +47,7 @@ public class ChartFragment extends Fragment {
 //            }
 //        });
         mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
-        pieChart=root.findViewById(R.id.chart_pie);
+        pieChart = root.findViewById(R.id.chart_pie);
         monthSpin = root.findViewById(R.id.chart_month_spinner);
         yearSpin = root.findViewById(R.id.chart_year_spinner);
         monthSpin.setSelection(getCurrentMonthPos());
@@ -58,7 +58,7 @@ public class ChartFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 int selectedYear = Integer.valueOf(yearSpin.getSelectedItem().toString());
                 int selectedMonth = Integer.valueOf(monthSpin.getSelectedItem().toString());
-                setmChart(selectedYear,selectedMonth);
+                setmChart(selectedYear, selectedMonth);
             }
 
             @Override
@@ -70,7 +70,7 @@ public class ChartFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 int selectedYear = Integer.valueOf(yearSpin.getSelectedItem().toString());
                 int selectedMonth = Integer.valueOf(monthSpin.getSelectedItem().toString());
-                setmChart(selectedYear,selectedMonth);
+                setmChart(selectedYear, selectedMonth);
             }
 
             @Override
@@ -82,8 +82,8 @@ public class ChartFragment extends Fragment {
     }
 
     private void setmChart(int year, int month) {
-        PieDataSet pieDataSet = new PieDataSet(dataValues(year, month),"");
-        int[] colorClassArray = new int[]{getResources().getColor(R.color.colorTransport),getResources().getColor(R.color.colorShopping),getResources().getColor(R.color.colorFood),getResources().getColor(R.color.colorHousing)};
+        PieDataSet pieDataSet = new PieDataSet(dataValues(year, month), "");
+        int[] colorClassArray = new int[]{getResources().getColor(R.color.colorTransport), getResources().getColor(R.color.colorShopping), getResources().getColor(R.color.colorFood), getResources().getColor(R.color.colorHousing)};
         pieDataSet.setColors(colorClassArray);
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueTextSize(15);
@@ -96,12 +96,12 @@ public class ChartFragment extends Fragment {
         pieChart.invalidate();
     }
 
-    private ArrayList<PieEntry> dataValues(int year, int month){
-        ArrayList<PieEntry>dataVals = new ArrayList<>();
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getTransportByMonth(year, month)),"Transport"));
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getShoppingByMonth(year, month)),"Shopping"));
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getFoodByMonth(year, month)),"Food"));
-        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getHousingByMonth(year, month)),"Housing"));
+    private ArrayList<PieEntry> dataValues(int year, int month) {
+        ArrayList<PieEntry> dataVals = new ArrayList<>();
+        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getTransportByMonth(year, month)), "Transport"));
+        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getShoppingByMonth(year, month)), "Shopping"));
+        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getFoodByMonth(year, month)), "Food"));
+        dataVals.add(new PieEntry(Integer.parseInt(mLineViewModel.getHousingByMonth(year, month)), "Housing"));
         return dataVals;
     }
 

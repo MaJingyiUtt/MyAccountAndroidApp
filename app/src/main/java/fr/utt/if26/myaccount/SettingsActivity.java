@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,21 +15,21 @@ import android.widget.Toast;
 public class SettingsActivity extends AppCompatActivity {
     private TextView exportTv;
     private TextView deleteTv;
-    private Context context;
     private LineViewModel mLineViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        exportTv=findViewById(R.id.settings_export_tv);
-        deleteTv=findViewById(R.id.settings_delete_tv);
+        exportTv = findViewById(R.id.settings_export_tv);
+        deleteTv = findViewById(R.id.settings_delete_tv);
         mLineViewModel = ViewModelProviders.of(this).get(LineViewModel.class);
 
         exportTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SettingsActivity.this, AllDataActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -44,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 mLineViewModel.deleteAll();
-                                Toast.makeText(SettingsActivity.this,"All your data deleted",Toast.LENGTH_LONG).show();
+                                Toast.makeText(SettingsActivity.this, "All your data deleted", Toast.LENGTH_LONG).show();
                             }
                         })
 

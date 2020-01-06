@@ -14,6 +14,7 @@ import java.util.Objects;
 @Database(entities = {LineEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract LineDao lineDao();
+
     private static volatile AppDatabase INSTANCE;
 
     static AppDatabase getDatabase(final Context context) {

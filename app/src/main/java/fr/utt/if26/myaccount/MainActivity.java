@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-       // AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-         //       R.id.navigation_detail, R.id.navigation_add, R.id.navigation_chart)
-           //     .build();
+        // AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+        //       R.id.navigation_detail, R.id.navigation_add, R.id.navigation_chart)
+        //     .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-      //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration); //no action bar set in styles.xml
+        //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration); //no action bar set in styles.xml
         NavigationUI.setupWithNavController(navView, navController);
 
 //        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);

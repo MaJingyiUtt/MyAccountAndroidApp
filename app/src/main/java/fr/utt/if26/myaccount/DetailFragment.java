@@ -91,7 +91,6 @@ public class DetailFragment extends Fragment {
             }
 
 
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
             }

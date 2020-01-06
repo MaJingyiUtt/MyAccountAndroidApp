@@ -19,6 +19,7 @@
     <string name="delete">Delete all data</string>
     <string name="pin">Require PIN on startup</string>
     <string name="faceid">Require Face ID on startup</string>
+    <string name="ok">OK</string>
     <string-array name="category_arrays">
         <item></item>
         <item>Food</item>
